@@ -8,7 +8,7 @@ export async function SiteHeader() {
     <header className="topbar">
       <Link href="/" className="brand">
         <span className="brand-mark" />
-        Systems Notes
+        <span className="brand-text">Systems Notes</span>
       </Link>
 
       <nav className="nav" aria-label="Primary">

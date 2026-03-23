@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PostCard } from "@/components/post-card";
 import { SubscribeForm } from "@/components/subscribe-form";
+import { TypewriterHeading } from "@/components/typewriter-heading";
 import { getAdminSession } from "@/lib/auth";
 import { getPublishedPosts } from "@/lib/posts";
 
@@ -12,7 +13,10 @@ export default async function HomePage() {
   return (
     <>
       <section className="hero">
-        <h1>Dev explaining systems one by one.</h1>
+        <TypewriterHeading
+          text="Dev explaining systems one by one."
+          className="hero-typewriter"
+        />
         <p>
           Notes on backend engineering, systems design, and infrastructure, explained
           one piece at a time.

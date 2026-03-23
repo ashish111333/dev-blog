@@ -79,6 +79,14 @@ textarea {
   text-transform: uppercase;
 }
 
+.brand-text {
+  background: linear-gradient(135deg, #fffdf7 8%, #ffe4c5 42%, #ffb86c 70%, #ff8f2d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 28px rgba(255, 154, 61, 0.14);
+}
+
 .brand-mark {
   width: 12px;
   height: 12px;
@@ -121,6 +129,7 @@ textarea {
   display: grid;
   gap: 20px;
   margin-bottom: 28px;
+  overflow: hidden;
 }
 
 .hero-kicker,
@@ -144,6 +153,37 @@ textarea {
 .hero h1 {
   max-width: 12ch;
   font-size: clamp(3rem, 7vw, 5.4rem);
+}
+
+.hero-typewriter {
+  min-height: 1.1em;
+}
+
+.typewriter-shell {
+  position: relative;
+  display: inline-block;
+}
+
+.typewriter-ghost {
+  visibility: hidden;
+}
+
+.typewriter-live {
+  position: absolute;
+  inset: 0;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.84em;
+  margin-left: 0.1em;
+  border-radius: 999px;
+  background: rgba(255, 184, 108, 0.98);
+  vertical-align: -0.1em;
+  box-shadow: 0 0 10px rgba(255, 154, 61, 0.28);
+  will-change: opacity;
+  animation: cursor-blink 1.05s linear infinite;
 }
 
 .hero p,
@@ -461,5 +501,17 @@ textarea {
   .empty-state,
   .editor {
     padding: 20px;
+  }
+}
+
+@keyframes cursor-blink {
+  0%,
+  44% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
   }
 }
