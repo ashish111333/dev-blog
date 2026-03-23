@@ -14,7 +14,7 @@ export default async function HomePage() {
     <>
       <section className="hero">
         <TypewriterHeading
-          text="Dev explaining systems one by one."
+          text="Explaining systems one by one."
           className="hero-typewriter"
         />
         <p>
