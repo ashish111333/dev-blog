@@ -59,7 +59,7 @@ export function DashboardEditor({ adminEmail }: DashboardEditorProps) {
         ? `${current}\n\n![${file.name}](${data.url})`
         : `![${file.name}](${data.url})`
     );
-    setUploadMessage("Image uploaded to Cloud Storage and inserted into the post.");
+    setUploadMessage("Image uploaded to Cloudinary and inserted into the post.");
   }
 
   return (
@@ -146,7 +146,7 @@ export function DashboardEditor({ adminEmail }: DashboardEditorProps) {
               name="coverImage"
               value={coverImage}
               onChange={(event) => setCoverImage(event.target.value)}
-              placeholder="https://storage.googleapis.com/your-bucket/blog-images/example.png"
+              placeholder="https://res.cloudinary.com/your-cloud/image/upload/v1234/systems-notes/example.png"
             />
           </div>
 
@@ -193,7 +193,7 @@ export function DashboardEditor({ adminEmail }: DashboardEditorProps) {
             name="content"
             value={content}
             onChange={(event) => setContent(event.target.value)}
-            placeholder={`# Your title\n\nWrite with simple markdown.\n\n![Alt text](https://storage.googleapis.com/your-bucket/blog-images/example.png)`}
+            placeholder={`# Your title\n\nWrite with simple markdown.\n\n![Alt text](https://res.cloudinary.com/your-cloud/image/upload/v1234/systems-notes/example.png)`}
             required
           />
           <p className={`status ${uploadMessage ? "success" : ""}`}>{uploadMessage}</p>

@@ -1,10 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { requestIsAuthorized } from "@/lib/auth";
-import {
-  cloudStorageConfigured,
-  uploadImageToCloudStorage
-} from "@/lib/object-storage";
+import { imageStorageConfigured, uploadImage } from "@/lib/image-storage";
 
 export const runtime = "nodejs";
 
@@ -15,9 +12,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  if (!cloudStorageConfigured()) {
+  if (!imageStorageConfigured()) {
     return NextResponse.json(
-      { error: "Set GCS_BUCKET_NAME before uploading images." },
+      { error: "Set Cloudinary env vars before uploading images." },
       { status: 500 }
     );
   }
@@ -42,7 +39,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const buffer = Buffer.from(await file.arrayBuffer());
-    const uploaded = await uploadImageToCloudStorage({
+    const uploaded = await uploadImage({
       fileName: file.name,
       contentType: file.type,
       buffer
@@ -57,7 +54,7 @@ export async function POST(request: NextRequest) {
         error:
           error instanceof Error
             ? error.message
-            : "Image upload to Cloud Storage failed."
+            : "Image upload to Cloudinary failed."
       },
       { status: 500 }
     );

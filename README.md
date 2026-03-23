@@ -1,11 +1,12 @@
-# Dev Blog
+# Systems Notes
 
-A minimal dark-mode blog in Next.js with:
+A minimal dark-theme blog in Next.js with:
 
 - a public `/blog` endpoint
 - a private `/dashboard` endpoint for writing posts
 - Neon Postgres storage for posts and subscribers
-- Google Cloud Storage image uploads for cover and inline blog images
+- Cloudinary image uploads for cover and inline blog images
+- Vercel-friendly deployment flow
 
 ## Setup
 
@@ -21,17 +22,16 @@ npm install
 - `ADMIN_EMAIL`
 - `ADMIN_PASSWORD`
 - `AUTH_SECRET`
-- `GOOGLE_CLOUD_PROJECT`
-- `GCS_BUCKET_NAME`
-- `GCS_PUBLIC_BASE_URL`
-- `GCS_UPLOAD_PREFIX`
+- `CLOUDINARY_CLOUD_NAME`
+- `CLOUDINARY_API_KEY`
+- `CLOUDINARY_API_SECRET`
+- `CLOUDINARY_FOLDER`
 
-3. Configure Google credentials:
+3. Create a Cloudinary account:
 
-- on GCP, attach a service account with `Storage Object User` access to the bucket
-- locally, use Application Default Credentials or set `GOOGLE_APPLICATION_CREDENTIALS` to a service-account JSON path
-- make sure the bucket is publicly readable if you want blog images to load directly from the generated URL
-- a common setup is granting `Storage Object Viewer` on the bucket to `allUsers` for reads while keeping writes restricted to your service account
+- create a free Cloudinary account
+- copy your cloud name, API key, and API secret from the Cloudinary dashboard
+- optionally choose a folder name like `systems-notes` for uploaded blog images
 
 4. Start the app:
 
@@ -44,9 +44,17 @@ npm run dev
 - `http://localhost:3000/blog`
 - `http://localhost:3000/dashboard`
 
+## Vercel Deploy
+
+1. Push this repo to GitHub.
+2. Import the repo into Vercel.
+3. Add the same values from `.env.local` into the Vercel project environment variables.
+4. Redeploy after any env var change.
+
 ## Notes
 
 - The dashboard is protected by a cookie-backed login using your `ADMIN_EMAIL` and `ADMIN_PASSWORD`.
-- Uploaded images are stored in Google Cloud Storage and inserted into posts as public URLs.
+- Uploaded images are stored in Cloudinary and inserted into posts as public URLs.
 - The database tables auto-create on first access, but the SQL is also included in `sql/schema.sql`.
-- For Cloud Run deployment, see `DEPLOY_CLOUD_RUN.md`.
+- For Vercel deployment, set the same env vars in your Vercel project settings and redeploy.
+- See `DEPLOY_VERCEL.md` for the quick deploy path.
