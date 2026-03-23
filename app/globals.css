@@ -6,9 +6,9 @@
   --text: #f4f4f1;
   --muted: #97978f;
   --line: rgba(255, 255, 255, 0.08);
-  --accent: #ff9a3d;
-  --accent-strong: #ffb86c;
-  --accent-soft: rgba(255, 154, 61, 0.16);
+  --accent: #d90429;
+  --accent-strong: #ff375f;
+  --accent-soft: rgba(217, 4, 41, 0.24);
   --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
   --radius: 24px;
   --radius-sm: 16px;
@@ -21,8 +21,9 @@
 html {
   min-height: 100%;
   background:
-    radial-gradient(circle at top, rgba(255, 154, 61, 0.12), transparent 30%),
-    radial-gradient(circle at 85% 100%, rgba(255, 184, 108, 0.08), transparent 22%),
+    radial-gradient(circle at top, rgba(217, 4, 41, 0.24), transparent 32%),
+    radial-gradient(circle at 85% 100%, rgba(255, 55, 95, 0.14), transparent 24%),
+    radial-gradient(circle at 14% 18%, rgba(255, 95, 121, 0.08), transparent 18%),
     radial-gradient(circle at 0% 100%, rgba(255, 255, 255, 0.04), transparent 24%),
     var(--bg);
 }
@@ -80,11 +81,11 @@ textarea {
 }
 
 .brand-text {
-  background: linear-gradient(135deg, #fffdf7 8%, #ffe4c5 42%, #ffb86c 70%, #ff8f2d 100%);
+  background: linear-gradient(135deg, #ffffff 5%, #ffd7de 32%, #ff6b86 62%, #ff2148 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 28px rgba(255, 154, 61, 0.14);
+  text-shadow: 0 0 28px rgba(217, 4, 41, 0.3);
 }
 
 .brand-mark {
@@ -92,7 +93,7 @@ textarea {
   height: 12px;
   border-radius: 999px;
   background: var(--accent);
-  box-shadow: 0 0 24px rgba(255, 154, 61, 0.5);
+  box-shadow: 0 0 28px rgba(217, 4, 41, 0.7);
 }
 
 .nav {
@@ -109,7 +110,8 @@ textarea {
 
 .nav a:hover,
 .nav a:focus-visible {
-  border-color: rgba(255, 154, 61, 0.4);
+  border-color: rgba(255, 55, 95, 0.55);
+  box-shadow: 0 0 0 1px rgba(217, 4, 41, 0.16);
   color: var(--text);
 }
 
@@ -179,9 +181,9 @@ textarea {
   height: 0.84em;
   margin-left: 0.1em;
   border-radius: 999px;
-  background: rgba(255, 184, 108, 0.98);
+  background: rgba(255, 78, 108, 1);
   vertical-align: -0.1em;
-  box-shadow: 0 0 10px rgba(255, 154, 61, 0.28);
+  box-shadow: 0 0 16px rgba(255, 55, 95, 0.42);
   will-change: opacity;
   animation: cursor-blink 1.05s linear infinite;
 }
@@ -274,11 +276,13 @@ textarea {
 }
 
 .button {
-  border-color: rgba(255, 154, 61, 0.4);
+  border-color: rgba(255, 55, 95, 0.55);
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
   color: #17120d;
   font-weight: 700;
-  box-shadow: 0 12px 30px rgba(255, 154, 61, 0.22);
+  box-shadow:
+    0 12px 30px rgba(217, 4, 41, 0.32),
+    0 0 24px rgba(255, 55, 95, 0.16);
 }
 
 .ghost-button:hover,
@@ -345,7 +349,7 @@ textarea {
 
 .input:focus,
 .textarea:focus {
-  border-color: rgba(255, 154, 61, 0.5);
+  border-color: rgba(255, 55, 95, 0.65);
   box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
