@@ -45,7 +45,7 @@ function sign(value: string) {
 
 export function createSessionToken(email: string) {
   const normalizedEmail = email.toLowerCase();
-  const payload = `${normalizedEmail}.${Date.now()}`;
+  const payload = `${encodeURIComponent(normalizedEmail)}.${Date.now()}`;
   const signature = sign(payload);
   return `${payload}.${signature}`;
 }
@@ -55,13 +55,22 @@ export function verifySessionToken(token?: string | null) {
     return null;
   }
 
-  const [email, issuedAt, signature] = token.split(".");
+  const lastDotIndex = token.lastIndexOf(".");
+  const secondLastDotIndex = token.lastIndexOf(".", lastDotIndex - 1);
 
-  if (!email || !issuedAt || !signature) {
+  if (lastDotIndex === -1 || secondLastDotIndex === -1) {
     return null;
   }
 
-  const payload = `${email}.${issuedAt}`;
+  const encodedEmail = token.slice(0, secondLastDotIndex);
+  const issuedAt = token.slice(secondLastDotIndex + 1, lastDotIndex);
+  const signature = token.slice(lastDotIndex + 1);
+
+  if (!encodedEmail || !issuedAt || !signature) {
+    return null;
+  }
+
+  const payload = `${encodedEmail}.${issuedAt}`;
   let expectedSignature = "";
   let adminEmail = "";
 
@@ -82,6 +91,8 @@ export function verifySessionToken(token?: string | null) {
   if (!crypto.timingSafeEqual(signatureBuffer, expectedBuffer)) {
     return null;
   }
+
+  const email = decodeURIComponent(encodedEmail);
 
   if (email !== adminEmail) {
     return null;
