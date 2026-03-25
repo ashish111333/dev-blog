@@ -2,11 +2,11 @@ import Link from "next/link";
 import { PostCard } from "@/components/post-card";
 import { SubscribeForm } from "@/components/subscribe-form";
 import { TypewriterHeading } from "@/components/typewriter-heading";
-import { getAdminSession } from "@/lib/auth";
 import { getPublishedPosts } from "@/lib/posts";
 
+export const revalidate = 600;
+
 export default async function HomePage() {
-  const session = await getAdminSession();
   const posts = await getPublishedPosts();
   const latestPosts = posts.slice(0, 3);
 
@@ -25,11 +25,6 @@ export default async function HomePage() {
           <Link className="button" href="/blog">
             Read the blog
           </Link>
-          {session ? (
-            <Link className="ghost-button" href="/dashboard">
-              Open dashboard
-            </Link>
-          ) : null}
         </div>
       </section>
 
@@ -66,11 +61,7 @@ export default async function HomePage() {
           <div className="empty-state">
             <span className="eyebrow">No posts yet</span>
             <h2 className="section-title">Your blog is ready.</h2>
-            <p className="muted">
-              {session
-                ? "Head to the dashboard, write your first post, and it will appear here."
-                : "The first published post will appear here once the blog goes live."}
-            </p>
+            <p className="muted">The first published post will appear here once the blog goes live.</p>
           </div>
         )}
       </section>

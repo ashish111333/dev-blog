@@ -2,6 +2,8 @@ import { PostCard } from "@/components/post-card";
 import { SubscribeForm } from "@/components/subscribe-form";
 import { getPublishedPosts } from "@/lib/posts";
 
+export const revalidate = 600;
+
 export default async function BlogPage() {
   const posts = await getPublishedPosts();
 

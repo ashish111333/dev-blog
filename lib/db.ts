@@ -13,16 +13,12 @@ export function getSql() {
     return null;
   }
 
-  const sql =
-    global.__devBlogSql ??
-    postgres(connectionString, {
+  if (!global.__devBlogSql) {
+    global.__devBlogSql = postgres(connectionString, {
       ssl: "require",
       max: 1
     });
-
-  if (process.env.NODE_ENV !== "production") {
-    global.__devBlogSql = sql;
   }
 
-  return sql;
+  return global.__devBlogSql;
 }

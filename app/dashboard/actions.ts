@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import {
   adminCredentialsMatch,
@@ -101,6 +101,7 @@ export async function createPostAction(
     throw error;
   }
 
+  revalidateTag("posts");
   revalidatePath("/");
   revalidatePath("/blog");
   revalidatePath(`/blog/${slug}`);

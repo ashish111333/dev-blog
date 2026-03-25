@@ -1,9 +1,6 @@
 import Link from "next/link";
-import { getAdminSession } from "@/lib/auth";
 
-export async function SiteHeader() {
-  const session = await getAdminSession();
-
+export function SiteHeader() {
   return (
     <header className="topbar">
       <Link href="/" className="brand">
@@ -14,7 +11,6 @@ export async function SiteHeader() {
       <nav className="nav" aria-label="Primary">
         <Link href="/">Home</Link>
         <Link href="/blog">Blog</Link>
-        {session ? <Link href="/dashboard">Dashboard</Link> : null}
       </nav>
     </header>
   );

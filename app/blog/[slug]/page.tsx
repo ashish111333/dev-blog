@@ -3,6 +3,8 @@ import { MarkdownRenderer } from "@/components/markdown-renderer";
 import { getPostBySlug } from "@/lib/posts";
 import { formatDate } from "@/lib/utils";
 
+export const revalidate = 600;
+
 type BlogPostPageProps = {
   params: Promise<{
     slug: string;
